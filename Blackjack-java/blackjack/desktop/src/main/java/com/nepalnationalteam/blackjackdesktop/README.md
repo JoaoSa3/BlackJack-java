@@ -1,0 +1,1 @@
+A documentação oficial foi movida para a raiz do projeto (../README.md).
