@@ -4,3 +4,5 @@ dist/
 *.jar
 *.zip
 user_session.json
+serviceAccountKey.json
+.env
