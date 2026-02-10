@@ -1,0 +1,6 @@
+bin/
+dist/
+*.class
+*.jar
+*.zip
+user_session.json
