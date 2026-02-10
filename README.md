@@ -1,81 +1,99 @@
-# Nepal National Team Blackjack – Desktop App + Users API
+# Blackjack – Desktop App + Users API
 
-This project contains:
-
-- A **Java Swing desktop Blackjack game** that talks directly to **Firebase Realtime Database**.
-- A small **Users REST API (Node + Express)** used only to demonstrate the 4 basic HTTP operations (GET, POST, PUT, DELETE) on a /users collection via Postman.
-
-The desktop app can run **without** the local API (it uses Firebase directly).  
-The local API is only for showing HTTP requests with Postman.
+A Java Swing Blackjack game with Firebase integration and a Node.js REST API for user management.
 
 ---
 
-## Project structure
+## Features
 
-`
+✅ **Blackjack Game** – Play against the dealer with Hit, Stand, Double Down  
+✅ **User Authentication** – Register and login with Firebase  
+✅ **Real-time Wallet** – Balance synced to Firebase Realtime Database  
+✅ **REST API** – Full CRUD operations on users via Postman  
+✅ **Session Management** – Persistent user sessions  
+
+---
+
+## Project Structure
+
+```
 blackjack/
-  desktop/         # Main Java desktop app (Maven)
-    src/main/java/com/nepalnationalteam/blackjackdesktop/
-    src/main/resources/serviceAccountKey.json
-    pom.xml
-    user_session.json
-    target/
-  api/             # Users API (Node.js + Express)
-    server.js
-    package.json
-    node_modules/
-  postman/         # Postman collection for testing the API
-    BlackjackUsersAPI.postman_collection.json
+├── desktop/              # Java Swing desktop app (Maven)
+│   ├── src/main/java/com/nepalnationalteam/blackjackdesktop/
+│   ├── src/main/resources/serviceAccountKey.json
+│   ├── pom.xml
+│   └── user_session.json
+├── api/                  # REST API (Node.js + Express)
+│   ├── server.js
+│   └── package.json
+└── postman/              # Postman collection
+    └── BlackjackUsersAPI.postman_collection.json
+
 doc/
-  requirements.md
-  blackjack_diagram.md
-  diagram_short_version.png
-  diagram_complete_version.png
-  Black Jack Game Sprint 2.pptx
-`
+├── requirements.md
+└── blackjack_diagram.md
+```
 
 ---
 
-## How to run
+## How to Run
 
 ### Desktop App (Java/Maven)
 
-1. Navigate to the lackjack/desktop folder:
-   `sh
-   cd blackjack/desktop
-   `
+**Requirements:** Java 17+, Maven 3.6+
 
-2. Compile and run the JAR:
-   `sh
-   mvn clean package
-   java -jar target/blackjack-casino-desktop-1.0-SNAPSHOT.jar
-   `
+```sh
+cd blackjack/desktop
+mvn clean package
+java -jar target/blackjack-casino-desktop-1.0-SNAPSHOT.jar
+```
 
 ### Users API (Node.js)
 
-1. Navigate to the lackjack/api folder:
-   `sh
-   cd blackjack/api
-   `
+**Requirements:** Node.js 14+
 
-2. Install dependencies and start the server:
-   `sh
-   npm install
-   npm start
-   `
+```sh
+cd blackjack/api
+npm install
+npm start
+```
 
-The API will be available at http://localhost:3000.
+API runs on `http://localhost:3000`.
 
-### Test with Postman
+---
 
-Import the Postman collection located at:
-[lackjack/postman/BlackjackUsersAPI.postman_collection.json](blackjack/postman/BlackjackUsersAPI.postman_collection.json).
+## Test with Postman
+
+Import the collection: `blackjack/postman/BlackjackUsersAPI.postman_collection.json`
+
+Endpoints:
+- `GET /users` – List all users
+- `GET /users/:id` – Get user by ID
+- `POST /users` – Create new user
+- `PUT /users/:id/wallet` – Update wallet balance
+- `DELETE /users/:id` – Delete user
+
+---
+
+## Firebase Configuration
+
+Add your Firebase credentials to:
+```
+blackjack/desktop/src/main/resources/serviceAccountKey.json
+```
+
+```json
+{
+  "apiKey": "YOUR_API_KEY",
+  "databaseUrl": "https://your-project.firebasedatabase.app/"
+}
+```
 
 ---
 
 ## Notes
 
-- Only the Maven version of the desktop app is maintained.
-- User balance is saved in Firebase Realtime Database.
-- The user session file is located at:
-  [lackjack/desktop/user_session.json](blackjack/desktop/user_session.json).
+- Desktop app works independently (Firebase-based)
+- API is optional (for testing/demos)
+- User session saved in `blackjack/desktop/user_session.json`
+- User balance persisted in Firebase Realtime Database
